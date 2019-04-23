@@ -1,0 +1,108 @@
+% Set the default paper to a4paper and the fontsize to 10pt
+\documentclass[a4paper, 10pt]{article}
+
+% Margins of the cheatsheet
+\usepackage[landscape, margin=0pt]{geometry}
+\advance\topmargin 5mm
+
+% Remove page numbering
+\pagenumbering{gobble}
+
+% For importing images
+\usepackage{graphicx}
+
+% For using custom font compile with xelatex
+\usepackage{fontspec}
+\setmainfont{Hack Nerd Font}
+
+% Section formatting
+% \colorbox{shadecolor}
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{1mm}{1mm}
+% Background color for sections
+\usepackage{xcolor}
+\definecolor{shadecolor}{RGB}{200,200,200}
+\titleformat{\section} % command
+[block] % shape
+{\large\bfseries} % format
+{} % label
+{} % sep
+{} % before-code
+[] % after-code
+\newcommand{\mySection}[1]{
+  \noindent\colorbox{shadecolor}{
+    \parbox{\textwidth}{\section*{#1}}
+  }
+} 
+
+% vertical spacing of the paragraphs
+\setlength{\parskip}{2mm}
+
+% indentation inside minipage not working
+\newcommand{\tab}{\hspace*{4mm}}
+
+% package for syntax
+\usepackage{listings}
+
+% space between sections: \hspace{5mm}
+% new line: \par
+\begin{document}
+\begin{center}{
+  \huge{\textbf{ Python 3 Cheatsheet}}}
+  \\{\large By Fernando Chavez Riquelme}
+\end{center}
+
+\begin{minipage}[t]{0.2\textwidth}
+  \mySection{Basics}
+  \begin{lstlisting}[language=Python]
+# Comments, no multiline
+print('')
+varTrue = True
+varFalse = False
+  \end{lstlisting}
+\end{minipage}
+\hspace{5mm}
+\begin{minipage}[t]{0.13\textwidth}
+  \mySection{Numbers}
+  float division /\\
+  floor division //
+  \begin{lstlisting}[language=Python]
+pow = 2**2 # 4
+int("9")
+a, b = 1, 2 # swap
+a, b = b, a # swap 
+  \end{lstlisting}
+\end{minipage}
+\hspace{5mm}
+\begin{minipage}[t]{0.26\textwidth}
+  \mySection{Strings}
+  Strings are immutable
+  \begin{lstlisting}[language=Python]
+'' = "" # Single quotes
+s = 'py'+'thon str'
+len(s) # 6
+nine = str(9)
+sLower = s.lower()
+s.count('p') # 1 occurrences of substring
+s.split(' ') # ['python', 'str']
+':'.join(['A','B','C']) # 'A:B:C'
+s.replace('str', 'int') # python int
+  \end{lstlisting}
+\end{minipage}
+\par
+\begin{minipage}[t]{0.33\textwidth}
+  \mySection{Sets}
+  Like lists but no duplicates
+  \begin{lstlisting}[language=Python]
+emptySet = set()
+set = {'a', 'o', 'p'}
+'a' in set # true
+a - b # letters in a but not in b
+a | b # letters in a or b or both
+a & b # letters in both a and b
+a ^ b # letters in a or b but not both
+  \end{lstlisting}
+  Comprehension is also supported
+\end{minipage}
+
+\end{document}
